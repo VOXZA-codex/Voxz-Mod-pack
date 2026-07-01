@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voxz Addon Market Place</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Tombol Menu Garis Tiga -->
+<button class="menu-toggle" id="menuToggle">☰</button>
+
+<!-- Menu Samping -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h2>VOXZ MARKET PLACE</h2>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="#beranda">• Beranda</a>
+        <a href="#koleksi">• Koleksi</a>
+        <a href="tentang.html">• Info</a>
+        <a href="kontak.html">• Kontak</a>
+        <a href="contri.html">• Upload</a>
+        <a href="top.html">• Official Team Channel </a>
+    </nav>
+</div>
+
+<!-- Latar Belakang Gelap Saat Menu Terbuka -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Isi Halaman Utama -->
+<div class="container">
+    <header class="banner" id="beranda">
+        <h1>Koleksi Addon Market Place</h1>
+        <p>Semua addon tersedia secara gratis, aman dan mudah diunduh</p>
+        <a href="#koleksi" class="btn">Lihat Semua Addon</a>
+    </header>
+
+    <section class="koleksi" id="koleksi">
+        <h2 class="judul-bagian">📦 Addon List</h2>
+
+        <div class="kontrol">
+            <select id="filterKategori">
+                <option value="semua">All Categories</option>
+                <option value="Add-on">Add-on</option>
+                <option value="Texture">Texture</option>
+                <option value="Map">World</option>
+                <option value="Skins">Skins</option>
+            </select>
+            <input type="text" id="cariInput" placeholder="Cari nama addon...">
+        </div>
+
+        <div class="grid-addon" id="daftarAddon"></div>
+    </section>
+</div>
+
+<!-- Panggil File -->
+<script src="data_addons.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

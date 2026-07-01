@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+:root {
+    --utama: #00c2b8;
+    --gelap: #121218;
+    --abu: #1e1e29;
+    --abu-terang: #2a2f3a;
+    --putih: #f0f0f5;
+    --hijau: #2ecc71;
+    --kuning: #ffcc00;
+}
+
+body {
+    background: var(--gelap);
+    color: var(--putih);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* === TOMBOL MENU === */
+.menu-toggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1001;
+    background: var(--abu);
+    color: var(--putih);
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* === MENU SAMPING === */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
+    background: var(--gelap);
+    box-shadow: 2px 0 15px rgba(0,0,0,0.5);
+    z-index: 1002;
+    transition: left 0.3s ease;
+    padding-top: 20px;
+}
+
+.sidebar.buka {
+    left: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--abu-terang);
+    margin-bottom: 15px;
+}
+
+.sidebar-header h2 {
+    color: var(--utama);
+    font-size: 20px;
+    text-align: center;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--putih);
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+.sidebar-nav a:hover {
+    background: var(--abu);
+    color: var(--utama);
+    padding-left: 25px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    display: none;
+}
+
+.overlay.buka {
+    display: block;
+}
+
+/* === BANNER === */
+.banner {
+    margin-top: 80px;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    padding: 40px 20px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.banner h1 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    color: var(--putih);
+}
+
+.banner p {
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--utama);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    margin: 5px;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0,194,184,0.3);
+}
+
+.btn-donasi {
+    background: var(--kuning);
+    color: #111;
+}
+
+/* === KOLEKSI & KARTU === */
+.judul-bagian {
+    text-align: center;
+    margin: 30px 0 20px;
+    font-size: 24px;
+    color: var(--utama);
+}
+
+.kontrol {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.kontrol input, .kontrol select {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    background: var(--abu);
+    color: white;
+    font-size: 15px;
+    outline: none;
+    width: 100%;
+    max-width: 300px;
+}
+
+.grid-addon {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 25px;
+}
+
+.kartu-addon {
+    background: var(--abu);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.kartu-addon:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(0,194,184,0.2);
+}
+
+.kartu-addon img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.info {
+    padding: 15px;
+}
+
+.info h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.pembuat {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-bottom: 8px;
+}
+
+.harga {
+    font-weight: bold;
+    color: var(--hijau);
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.aksi {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-detail {
+    flex: 1;
+    background: #44475a;
+    color: white;
+}
+
+.btn-unduh {
+    flex: 1;
+    background: var(--hijau);
+    color: white;
+}
+
+/* === KOTAK INFO HALAMAN TENTANG & KONTAK === */
+.kotak-info {
+    background: var(--abu);
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Responsif */
+@media(max-width: 768px) {
+    .banner h1 {
+        font-size: 22px;
+    }
+}

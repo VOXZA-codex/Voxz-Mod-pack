@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim & Saluran | Voxz Market Place</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .konten-bantu {
+            padding: 80px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .judul-halaman {
+            text-align: center;
+            color: var(--utama);
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        /* Gaya tombol/box lebar tapi pendek */
+        .kotak-saluran {
+            width: 100%;
+            background: var(--abu);
+            border: 1px solid var(--abu-terang);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--putih);
+            transition: 0.2s;
+        }
+
+        .kotak-saluran:hover {
+            background: var(--abu-terang);
+            transform: translateY(-1px);
+        }
+
+        .foto-saluran {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--utama);
+        }
+
+        .info-saluran h3 {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .info-saluran p {
+            font-size: 13px;
+            opacity: 0.7;
+            margin: 2px 0 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Tombol Menu -->
+<button class="menu-toggle" id="menuToggle">☰</button>
+
+<!-- Menu Samping -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h2>VOXZ MARKET PLACE</h2>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="#beranda">• Beranda</a>
+        <a href="#koleksi">• Koleksi</a>
+        <a href="tentang.html">• Info</a>
+        <a href="kontak.html">• Kontak</a>
+        <a href="contri.html">• Upload</a>
+        <a href="top.html">• Official Team Channel </a>
+    </nav>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- Isi Halaman -->
+<div class="konten-bantu">
+    <h2 class="judul-halaman">Official Team Channel</h2>
+
+    <!-- Contoh 1 -->
+        <a href="https://whatsapp.com/channel/0029Vb8346EKAwEkgyvMcu0g" target="_blank" class="kotak-saluran">
+        <img src="https://files.catbox.moe/p6ulw1.jpg" alt="Profil" class="foto-saluran">
+        <div class="info-saluran">
+            <h3>VOXZA | COMUNITY</h3>
+        </div>
+    </a>
+    
+    <a href="https://whatsapp.com/channel/0029Vb8AqEB8fewv6b7kjK3D" target="_blank" class="kotak-saluran">
+        <img src="https://files.catbox.moe/py0k7y.jpg" alt="Profil" class="foto-saluran">
+        <div class="info-saluran">
+            <h3>𝗗𝗭𝗔𝗞𝗜┃𝗖𝗛𝗔𝗡𝗡𝗘𝗟</h3>
+        </div>
+    </a>
+
+    <!-- Contoh 2 - Tambah lagi kalau ada -->
+
+    <a href="https://whatsapp.com/channel/0029VbARZ0L7YSd1C4Sky52J" target="_blank" class="kotak-saluran">
+        <img src="https://files.catbox.moe/22473w.jpg" alt="Profil" class="foto-saluran">
+        <div class="info-saluran">
+            <h3>KuonaMC | Bagi" Add-On ||『𝐄𝐂』</h3>
+        </div>
+    </a>
+    
+    <a href="https://whatsapp.com/channel/0029VbCPwUj84Om5ovSwYb2A" target="_blank" class="kotak-saluran">
+        <img src="https://files.catbox.moe/cbnzul.jpg" alt="Profil" class="foto-saluran">
+        <div class="info-saluran">
+            <h3>𝗣𝗮𝗶𝗠𝗖 • 𝗕𝗮𝗴𝗶² 𝗔𝗱𝗱𝗼𝗻 🥧</h3>
+        </div>
+    </a>
+
+    <!-- Salin blok di atas untuk tambah lebih banyak -->
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

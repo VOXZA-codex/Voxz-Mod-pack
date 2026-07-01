@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uploads Mods | Voxz Market</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .konten {
+            padding: 80px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .kotak {
+            background: var(--abu);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--abu-terang);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--utama);
+            margin-bottom: 25px;
+        }
+
+        .form-grup {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #ddd;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            background: var(--abu-terang);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        #hasilKode {
+            margin-top: 25px;
+            padding: 15px;
+            background: #121218;
+            border-radius: 8px;
+            color: #00c2b8;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            display: none;
+        }
+
+        .btn-salin {
+            margin-top: 12px;
+            background: var(--hijau);
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Tombol Menu -->
+<button class="menu-toggle" id="menuToggle">☰</button>
+
+<!-- Menu Samping -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h2>VOXZ MARKET PLACE</h2>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="#beranda">• Beranda</a>
+        <a href="#koleksi">• Koleksi</a>
+        <a href="tentang.html">• Info</a>
+        <a href="kontak.html">• Kontak</a>
+        <a href="contri.html">• Upload</a>
+        <a href="top.html">• Top Contribution </a>
+    </nav>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="konten">
+    <div class="kotak">
+        <h2>📋 Upload Mod</h2>
+
+        <div class="form-grup">
+            <label>NAMA MOD</label>
+            <input type="text" id="nama" placeholder="Contoh: Action & stuff">
+        </div>
+
+        <div class="form-grup">
+            <label>UPLOAD BY </label>
+            <input type="text" id="pembuat" placeholder="Contoh: Voxz Official">
+        </div>
+
+        <div class="form-grup">
+            <label>KATEGORI</label>
+            <select id="kategori">
+                <option value="Add-on">Add-on</option>
+                <option value="Texture">Texture</option>
+                <option value="Map">World</option>
+                <option value="Skins">Skins</option>
+            </select>
+        </div>
+
+        <div class="form-grup">
+            <label>GAMBAR (Pakai Link)</label>
+            <input type="text" id="gambar" placeholder="https://files.catbox.jpg">
+        </div>
+
+        <div class="form-grup">
+            <label>LINK DOWNLOAD</label>
+            <input type="text" id="linkUnduh" placeholder="https://www.mediafire.com/file.mcaddon/file">
+        </div>
+
+        <div class="form-grup">
+            <label>UKURAN FILE</label>
+            <input type="text" id="ukuran" placeholder="Contoh: 3.2 MB">
+        </div>
+
+        <div class="form-grup">
+            <label>DESKRIPSI</label>
+            <textarea id="deskripsi" placeholder="Tulis keterangan singkat tentang mod..."></textarea>
+        </div>
+
+        <div class="form-grup">
+            <label>KOMPATIBEL (Versi MCPE)</label>
+            <input type="text" id="kompatibel" value="MCPE 1.21 - 1.26+">
+        </div>
+
+        <button class="btn" onclick="buatKode()" style="width:100%; margin-top:10px;">Upload</button>
+
+        <div id="hasilKode"></div>
+        <button class="btn btn-salin" id="tombolSalin" onclick="salinKode()" style="display:none;">📋 Salin Kode</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+// Ambil ID terakhir dari daftar addon
+function dapatkanIdBaru() {
+    if (typeof daftarAddon !== 'undefined' && daftarAddon.length > 0) {
+        return daftarAddon[daftarAddon.length - 1].id + 1;
+    }
+    return 1;
+}
+
+function buatKode() {
+    const id = dapatkanIdBaru();
+    const nama = document.getElementById('nama').value.trim();
+    const pembuat = document.getElementById('pembuat').value.trim();
+    const kategori = document.getElementById('kategori').value;
+    const gambar = document.getElementById('gambar').value.trim();
+    const linkUnduh = document.getElementById('linkUnduh').value.trim();
+    const ukuran = document.getElementById('ukuran').value.trim();
+    const deskripsi = document.getElementById('deskripsi').value.trim() || "No Captions.";
+    const kompatibel = document.getElementById('kompatibel').value.trim();
+
+    if (!nama || !pembuat || !gambar || !linkUnduh || !ukuran) {
+        alert("❌ Isi semua kolom yang wajib!");
+        return;
+    }
+
+    const kode = `  {
+    id: ${id},
+    nama: "${nama.replace(/"/g, '\\"')}",
+    pembuat: "${pembuat.replace(/"/g, '\\"')}",
+    kategori: "${kategori}",
+    gambar: "${gambar}",
+    linkUnduh: "${linkUnduh}",
+    kompatibel: "${kompatibel}",
+    ukuran: "${ukuran}",
+    deskripsi: "${deskripsi.replace(/"/g, '\\"')}"
+  },`;
+
+    const wadah = document.getElementById('hasilKode');
+    wadah.style.display = "block";
+    wadah.textContent = kode;
+    document.getElementById('tombolSalin').style.display = "block";
+}
+
+function salinKode() {
+    const teks = document.getElementById('hasilKode').textContent;
+    navigator.clipboard.writeText(teks)
+        .then(() => alert("✅ Kode berhasil disalin! Tempelkan ke file data_addons.js"))
+        .catch(() => alert("❌ Gagal menyalin, silakan salin manual"));
+}
+</script>
+
+</body>
+</html>
