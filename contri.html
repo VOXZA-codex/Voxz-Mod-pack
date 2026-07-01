@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Otomatis | Voxz Market</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif;}
+        body{background:#000;color:#fff;min-height:100vh;padding:20px;display:flex;align-items:center;justify-content:center;}
+        .kotak{width:100%;max-width:580px;background:#151515;padding:25px;border-radius:12px;border:1px solid #222;}
+        h2{text-align:center;margin-bottom:20px;color:#00ffff;}
+        .grup{margin-bottom:15px;}
+        label{display:block;margin-bottom:5px;font-size:14px;color:#ccc;}
+        input,select,textarea{width:100%;padding:10px;background:#222;border:none;border-radius:6px;color:#fff;font-size:15px;}
+        textarea{min-height:70px;resize:vertical;}
+        button{width:100%;padding:12px;margin-top:8px;border:none;border-radius:6px;background:#00ffff;color:#000;font-weight:bold;cursor:pointer;transition:0.2s;}
+        button:hover{background:#00cccc;}
+        button:disabled{opacity:0.5;cursor:not-allowed;}
+        #status{margin-top:15px;padding:12px;border-radius:6px;display:none;text-align:center;font-weight:500;}
+        .tersembunyi{display:none;}
+    </style>
+</head>
+<body>
+<div class="kotak">
+    <h2>🔐 Upload Otomatis Voxz</h2>
+
+    <!-- HALAMAN LOGIN -->
+    <div id="halamanMasuk">
+        <div class="grup">
+            <label>Kode Akses Admin</label>
+            <input type="password" id="kunci" placeholder="Masukkan kunci rahasia..." required>
+        </div>
+        <button onclick="cekKunci()">✅ Buka Form Upload</button>
+    </div>
+
+    <!-- HALAMAN FORM -->
+    <div id="halamanForm" class="tersembunyi">
+        <div class="grup"><label>Nama Addon</label><input type="text" id="nama" placeholder="Contoh: Action & stuff" required></div>
+        <div class="grup"><label>Upload By</label><input type="text" id="pembuat" placeholder="Voxz Official" required></div>
+        <div class="grup"><label>Kategori</label><select id="kategori">
+            <option value="Add-on">Addon</option>
+            <option value="Texture">Texture</option>
+            <option value="Map">World</option>
+            <option value="Skins">Skin</option>
+        </select></div>
+        <div class="grup"><label>Link Gambar</label><input type="url" id="gambar" placeholder="https://..." required></div>
+        <div class="grup"><label>Link Download</label><input type="url" id="unduh" placeholder="https://..." required></div>
+        <div class="grup"><label>Ukuran File</label><input type="text" id="ukuran" placeholder="4.2 MB" required></div>
+        <div class="grup"><label>Kompatibel</label><input type="text" id="versi" value="MCPE 1.21 - 1.26+"></div>
+        <div class="grup"><label>Deskripsi</label><textarea id="deskripsi" rows="2">No Captions.</textarea></div>
+        
+        <button onclick="prosesSimpan()" id="btnSimpan">🔄 Upload</button>
+        <div id="status"></div>
+    </div>
+</div>
+
+<script>
+// ⚙️ PENGATURAN TIDAK PERLU DIUBAH LAGI
+const KUNCI_ADMIN = "gphp_Admin_Uploads_2026";
+const GITHUB = {
+    user: "VOXZA-codex",
+    repo: "voxz-mod-pack",
+    file: "data_addons.js",
+    branch: "main",
+    token: "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"
+};
+
+// Cek Kunci Akses
+function cekKunci() {
+    const input = document.getElementById("kunci").value.trim();
+    if (input !== KUNCI_ADMIN) return alert("❌ Kunci akses salah!");
+    document.getElementById("halamanMasuk").classList.add("tersembunyi");
+    document.getElementById("halamanForm").classList.remove("tersembunyi");
+}
+
+// Ambil File & Isi Lama dari GitHub
+async function ambilFileGitHub() {
+    const url = `https://api.github.com/repos/${GITHUB.user}/${GITHUB.repo}/contents/${GITHUB.file}?ref=${GITHUB.branch}`;
+    const res = await fetch(url, {
+        headers: {
+            "Authorization": `Bearer ${GITHUB.token}`,
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28"
+        }
+    });
+    if (res.status === 404) throw new Error("File data_addons.js belum ada di repo!");
+    if (!res.ok) throw new Error(`Gagal baca file: ${res.status} ${res.statusText}`);
+    return await res.json();
+}
+
+// Simpan / Perbarui File ke GitHub
+async function simpanKeGitHub(isiBaru, shaLama) {
+    const url = `https://api.github.com/repos/${GITHUB.user}/${GITHUB.repo}/contents/${GITHUB.file}`;
+    const res = await fetch(url, {
+        method: "PUT",
+        headers: {
+            "Authorization": `token ${GITHUB.token}`,
+            "Accept": "application/vnd.github+json",
+            "Content-Type": "application/json",
+            "X-GitHub-Api-Version": "2022-11-28"
+        },
+        body: JSON.stringify({
+            message: "Tambah addon otomatis dari form",
+            content: btoa(unescape(encodeURIComponent(isiBaru))),
+            sha: shaLama,
+            branch: GITHUB.branch
+        })
+    });
+    if (!res.ok) throw new Error(`Gagal simpan: ${res.status} ${res.statusText}`);
+    return true;
+}
+
+// Proses Utama Kirim Data
+async function prosesSimpan() {
+    const status = document.getElementById("status");
+    const btn = document.getElementById("btnSimpan");
+    status.style.display = "block";
+    status.style.background = "#2a2f3a";
+    status.textContent = "⏳ Sedang mengirim langsung ke GitHub...";
+    btn.disabled = true;
+
+    try {
+        // Ambil semua nilai input
+        const nama = document.getElementById("nama").value.trim();
+        const pembuat = document.getElementById("pembuat").value.trim();
+        const kategori = document.getElementById("kategori").value;
+        const gambar = document.getElementById("gambar").value.trim();
+        const unduh = document.getElementById("unduh").value.trim();
+        const ukuran = document.getElementById("ukuran").value.trim();
+        const versi = document.getElementById("versi").value.trim();
+        const deskripsi = document.getElementById("deskripsi").value.trim() || "No Captions.";
+
+        // Validasi wajib
+        if (!nama || !pembuat || !gambar || !unduh || !ukuran) throw new Error("Isi semua kolom yang wajib diisi!");
+
+        // Ambil data lama & sha
+        const file = await ambilFileGitHub();
+        const isiLama = decodeURIComponent(escape(atob(file.content)));
+        const pola = /const daftarAddon = \[([\s\S]*)\];/;
+        if (!pola.test(isiLama)) throw new Error("Format file data_addons.js salah! Harus: const daftarAddon = [];");
+
+        // Hitung ID baru
+        const daftarId = isiLama.match(/id: (\d+)/g);
+        const idBaru = daftarId ? daftarId.length + 1 : 1;
+
+        // Susun format data baru
+        const dataBaru = `  {
+    id: ${idBaru},
+    nama: "${nama.replace(/"/g, '\\"')}",
+    pembuat: "${pembuat.replace(/"/g, '\\"')}",
+    kategori: "${kategori}",
+    gambar: "${gambar}",
+    linkUnduh: "${unduh}",
+    ukuran: "${ukuran}",
+    kompatibel: "${versi}",
+    deskripsi: "${deskripsi.replace(/"/g, '\\"')}"
+  },`;
+
+        // Gabungkan data lama & baru
+        const isiBaru = isiLama.replace(pola, `const daftarAddon = [\n${isiLama.match(pola)[1].trim()}\n\n${dataBaru}\n];`);
+
+        // Kirim otomatis ke GitHub!
+        await simpanKeGitHub(isiBaru, file.sha);
+
+        // Berhasil
+        status.style.background = "#1e4620";
+        status.textContent = "✅ BERHASIL! Data langsung masuk ke GitHub! Tunggu sebentar tampil di web.";
+        document.querySelectorAll("input,textarea").forEach(el => el.value = "");
+
+    } catch (err) {
+        status.style.background = "#581818";
+        status.textContent = `❌ Gagal: ${err.message}`;
+    } finally {
+        btn.disabled = false;
+    }
+}
+</script>
+</body>
+</html>
