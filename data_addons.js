@@ -177,7 +177,7 @@ const daftarAddon = [
   }, 
   {
     id: 17,
-    nama: "Dino Labs,
+    nama: "Dino Labs",
     pembuat: "Kuona",
     kategori: "Add-on",
     gambar: "https://files.catbox.moe/cjiidc.jpg",
