@@ -174,5 +174,49 @@ const daftarAddon = [
     kompatibel: "MCPE 1.21 - 1.26+",
     ukuran: "609.59 KB",
     deskripsi: "No Captions."
+  }, 
+  {
+    id: 17,
+    nama: "Dino Labs,
+    pembuat: "Kuona",
+    kategori: "Add-on",
+    gambar: "https://files.catbox.moe/cjiidc.jpg",
+    linkUnduh: "https://www.mediafire.com/file/jsbfggd3dlszt4d/Dino_Labs_By_Street_Studios.mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "17.61 MB",
+    deskripsi: "DINOSAURUS DI MINECRAFT🦖"
+  },
+{
+    id: 18,
+    nama: "Void Weapons",
+    pembuat: "Kuona",
+    kategori: "Map",
+    gambar: "https://files.catbox.moe/0w2ng3.jpg",
+    linkUnduh: "https://www.mediafire.com/file/0y6sijox435vfio/Void_Weapons_By_ZYDAM_%2528world_template%2529.mctemplate/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "3.79 MB",
+    deskripsi: "SENJATA OP DI MINECRAFT🌑"
+  },
+{
+    id: 19,
+    nama: "Ether Dimension",
+    pembuat: "Kuona",
+    kategori: "Map",
+    gambar: "https://files.catbox.moe/o33srg.jpg",
+    linkUnduh: "https://www.mediafire.com/file/qng8i23md6o6q7s/ETHER_DIMENSION_II_%2528world_template%2529.mctemplate/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "119.01 MB",
+    deskripsi: "DIMENSI SURGA DI MINECRAFT✨"
+  },
+{
+    id: 20,
+    nama: "Bank Rush",
+    pembuat: "Kuona",
+    kategori: "Map",
+    gambar: "https://files.catbox.moe/9fip9c.jpg",
+    linkUnduh: "https://www.mediafire.com/file/q7hwafveb5h6a1m/Bank_Rush_%2528world_template%2529.mctemplate/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "3.55 MB",
+    deskripsi: "PERAMPOKAN DI MINECRAFT🪙"
   }
 ];
