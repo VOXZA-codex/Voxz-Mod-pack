@@ -290,6 +290,55 @@ body {
     transform: rotate(90deg);
 }
 
+/* === POP UP IKUTI SALURAN WA === */
+.latar-pengikut {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999; /* Paling atas, kunci halaman belakang */
+    padding: 20px;
+}
+
+.kotak-pengikut {
+    background: var(--abu);
+    border-radius: 20px;
+    padding: 30px 25px;
+    max-width: 360px;
+    width: 100%;
+    border: 1px solid var(--abu-terang);
+    position: relative;
+    text-align: center;
+    animation: munculNaik 0.3s ease-out;
+}
+
+@keyframes munculNaik {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tombol Silang Tutup */
+.tombol-tutup {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 26px;
+    color: #777;
+    cursor: pointer;
+    transition: 0.2s;
+    line-height: 1;
+    font-weight: 300;
+}
+
+.tombol-tutup:hover {
+    color: var(--putih);
+    transform: rotate(90deg);
+}
+
 /* === LOGO WHATSAPP ASLI === */
 .logo-wa-asli {
     width: 75px;
@@ -342,6 +391,8 @@ body {
     box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
 }
 
+}
+
 /* === KHUSUS HAPUS KOTAK DI TOMBOL SILANG SAJA === */
 .tombol-tutup {
     -webkit-tap-highlight-color: transparent !important;
@@ -349,4 +400,14 @@ body {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
+}
+/* === FOTO PROFIL DI POP UP === */
+.foto-profil {
+    width: 80px;
+    height: 80px;
+    margin: 10px auto 15px;
+    border-radius: 50%; /* Bikin bulat seperti profil */
+    border: 3px solid #25D366; /* Bingkai hijau WA */
+    object-fit: cover; /* Pas rapi tanpa gepeng */
+    display: block;
 }
