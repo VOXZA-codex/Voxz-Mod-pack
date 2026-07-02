@@ -241,31 +241,112 @@ body {
     color: white;
 }
 
-/* === KOTAK INFO HALAMAN TENTANG & KONTAK === */
-.kotak-info {
-    background: var(--abu);
-    padding: 25px;
-    border-radius: 12px;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Responsif */
-@media(max-width: 768px) {
-    .banner h1 {
-        font-size: 22px;
-    }
-}
-
-.btn-like {
+/* === POP UP IKUTI SALURAN WA === */
+.latar-pengikut {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 6px 12px;
-    border-radius: 20px;
-    background: var(--abu-terang) !important;
-    transition: 0.2s;
+    justify-content: center;
+    z-index: 99999; /* Paling atas, kunci halaman belakang */
+    padding: 20px;
 }
-.btn-like:hover {
-    transform: scale(1.05);
+
+.kotak-pengikut {
+    background: var(--abu);
+    border-radius: 20px;
+    padding: 30px 25px;
+    max-width: 360px;
+    width: 100%;
+    border: 1px solid var(--abu-terang);
+    position: relative;
+    text-align: center;
+    animation: munculNaik 0.3s ease-out;
+}
+
+@keyframes munculNaik {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tombol Silang Tutup */
+.tombol-tutup {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 26px;
+    color: #777;
+    cursor: pointer;
+    transition: 0.2s;
+    line-height: 1;
+    font-weight: 300;
+}
+
+.tombol-tutup:hover {
+    color: var(--putih);
+    transform: rotate(90deg);
+}
+
+/* === LOGO WHATSAPP ASLI === */
+.logo-wa-asli {
+    width: 75px;
+    height: 75px;
+    margin: 5px auto 18px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.kotak-pengikut h3 {
+    color: var(--putih);
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.kotak-pengikut p {
+    color: #bbbbbb;
+    font-size: 14px;
+    margin-bottom: 22px;
+    line-height: 1.6;
+}
+
+.btn-ikut-wa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 13px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-ikut-wa:hover {
+    background: #1fb85a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+
+/* === KHUSUS HAPUS KOTAK DI TOMBOL SILANG SAJA === */
+.tombol-tutup {
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
