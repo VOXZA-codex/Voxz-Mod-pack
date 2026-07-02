@@ -86,5 +86,93 @@ const daftarAddon = [
     kompatibel: "MCPE 1.21 - 1.26+",
     ukuran: "1.33 MB",
     deskripsi: "No Captions."
+  }, 
+  {
+    id: 9,
+    nama: "Village Expansion",
+    pembuat: "Voxz Official",
+    kategori: "Add-on",
+    gambar: "https://files.catbox.moe/ktccch.jpg",
+    linkUnduh: "https://www.mediafire.com/file/sbav4beb0zldn13/Village+Expansion+Add-On+(addon).mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "5.76 MB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 10,
+    nama: "Utility Tools",
+    pembuat: "Voxz Official",
+    kategori: "Add-on",
+    gambar: "https://files.catbox.moe/l2xzgq.jpg",
+    linkUnduh: "https://www.mediafire.com/file/ycsptwfd0xrpt3l/Utility+Tools+Add-On+(addon).mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "3.41 MB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 11,
+    nama: "Productive Bees",
+    pembuat: "Voxz Official",
+    kategori: "Add-on",
+    gambar: "https://files.catbox.moe/4c1amj.jpg",
+    linkUnduh: "https://www.mediafire.com/file/8k5oj5fh5gkqxbl/Productive+Bees+(addon).mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "3.9 MB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 12,
+    nama: "Mermaid Life",
+    pembuat: "Voxz Official",
+    kategori: "Add-on",
+    gambar: "https://files.catbox.moe/bl86ba.jpg",
+    linkUnduh: "https://www.mediafire.com/file/bwppiuc3135j4a8/Mermaid+Life+Add-On+(addon).mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "3.62 MB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 13,
+    nama: "Medieval City Defence",
+    pembuat: "Voxz Official",
+    kategori: "Add-on",
+    gambar: "https://files.catbox.moe/1eie7c.jpg",
+    linkUnduh: "https://www.mediafire.com/file/dgqjgpyzomrcyjr/Medieval+City+Defence+Add-On+(addon).mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "530.34 KB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 14,
+    nama: "Fragments Of The Overeorld",
+    pembuat: "Voxz Official",
+    kategori: "Add-on",
+    gambar: "https://files.catbox.moe/1j4rnl.jpg",
+    linkUnduh: "https://www.mediafire.com/file/hj1pv6zsmkya9sr/Fragments+of+the+Overworld+Add-On+(addon).mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "18.44 MB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 15,
+    nama: "Archeologeist",
+    pembuat: "Voxz Official",
+    kategori: "Texture",
+    gambar: "https://files.catbox.moe/42cx8t.jpg",
+    linkUnduh: "https://www.mediafire.com/file/886jlmsfun070hc/Archeologeist.mcpack/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "2.51 MB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 16,
+    nama: "Protection Blocks",
+    pembuat: "Voxz Official",
+    kategori: "Add-on",
+    gambar: "https://files.catbox.moe/9la01n.jpg",
+    linkUnduh: "https://www.mediafire.com/file/38y3em1iwkzlfyn/Protection_Blocks_%2528addon%2529.mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "609.59 KB",
+    deskripsi: "No Captions."
   }
 ];
