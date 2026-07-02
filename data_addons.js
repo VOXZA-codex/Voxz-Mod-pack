@@ -179,7 +179,7 @@ const daftarAddon = [
     id: 17,
     nama: "Dino Labs",
     pembuat: "Kuona",
-    kategori: "Add-on",
+    kategori: "Map",
     gambar: "https://files.catbox.moe/cjiidc.jpg",
     linkUnduh: "https://www.mediafire.com/file/jsbfggd3dlszt4d/Dino_Labs_By_Street_Studios.mcaddon/file",
     kompatibel: "MCPE 1.21 - 1.26+",
