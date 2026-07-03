@@ -273,7 +273,7 @@ const daftarAddon = [
     kompatibel: "MCPE 1.21 - 1.26+",
     ukuran: "20.27 MB",
     deskripsi: "No Captions."
-  }
+  },
   {
     id: 26,
     nama: "Scurity Mansion",
