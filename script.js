@@ -151,3 +151,31 @@ function unduhAddon(link) {
         window.open(link, '_blank');
     }
 }
+// === ARAHKAN OTOMATIS DARI LINK KHUSUS ===
+function cekLinkUnduh() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const idAddon = urlParams.get('dl');
+
+  if (!idAddon) return; // Tidak ada perintah, lanjut biasa
+
+  // Cari data addon yang sesuai
+  const addon = daftarAddon.find(a => a.id === idAddon);
+  if (!addon) {
+    alert("❌ Addon tidak ditemukan!");
+    return;
+  }
+
+  // Tampilkan info sebentar lalu arahkan
+  alert(`✅ Sedang membuka unduh:\n${addon.nama}`);
+  setTimeout(() => {
+    window.open(addon.linkUnduh, '_blank');
+    // Bersihkan link di browser biar rapi
+    history.replaceState({}, document.title, window.location.pathname);
+  }, 800);
+}
+
+// Jalankan saat halaman siap
+window.addEventListener('load', cekLinkUnduh);
+
+// SALIN INI SAJA, TIDAK PERLU DIUBAH
+function cekLinkUnduh(){const u=new URLSearchParams(window.location.search),d=u.get("dl");if(!d)return;const a=daftarAddon.find(x=>x.id==d);if(!a)return void alert("❌ Addon tidak ada!");alert(`✅ Buka: ${a.nama}`),setTimeout(()=>{window.open(a.linkUnduh,"_blank"),history.replaceState({},"",window.location.pathname)},700)}window.onload=cekLinkUnduh;

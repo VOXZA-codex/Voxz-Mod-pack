@@ -179,7 +179,7 @@ const daftarAddon = [
     id: 17,
     nama: "Dino Labs",
     pembuat: "Kuona",
-    kategori: "Add-on",
+    kategori: "Map",
     gambar: "https://files.catbox.moe/cjiidc.jpg",
     linkUnduh: "https://www.mediafire.com/file/jsbfggd3dlszt4d/Dino_Labs_By_Street_Studios.mcaddon/file",
     kompatibel: "MCPE 1.21 - 1.26+",
@@ -209,7 +209,7 @@ const daftarAddon = [
     deskripsi: "DIMENSI SURGA DI MINECRAFT✨"
   },
 {
-    id: 30,
+    id: 20,
     nama: "Bank Rush",
     pembuat: "Kuona",
     kategori: "Map",
@@ -218,5 +218,126 @@ const daftarAddon = [
     kompatibel: "MCPE 1.21 - 1.26+",
     ukuran: "3.55 MB",
     deskripsi: "PERAMPOKAN DI MINECRAFT🪙"
+  },
+  {
+    id: 21,
+    nama: "Gravestones",
+    pembuat: "Voxz Offcial",
+    kategori: "Add-on",
+    gambar: "https://files.catbox.moe/xs30tl.jpg",
+    linkUnduh: "https://www.mediafire.com/file/7wxgodcpi5du9u6/Gravestones+V2.0.8.mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "115.81 KB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 22,
+    nama: "Essentials",
+    pembuat: "Voxz Official",
+    kategori: "Add-on",
+    gambar: "https://files.catbox.moe/qgzv27.jpg",
+    linkUnduh: "https://www.mediafire.com/file/48fdzyk5alxdpip/essentials+(addon).mcaddon/file?dkey=bcrvqskgn9v&r=1869",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "1.76 MB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 23,
+    nama: "Infection",
+    pembuat: "Voxz Official",
+    kategori: "Texture",
+    gambar: "https://files.catbox.moe/mlv0t0.jpg",
+    linkUnduh: "https://www.mediafire.com/file/cxhpqk0ffzokejr/Infection+(resources).mcpack/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "2.38 MB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 24,
+    nama: "Gravity Expansion",
+    pembuat: "Voxz Official",
+    kategori: "Add-on",
+    gambar: "https://files.catbox.moe/pfg1vo.jpg",
+    linkUnduh: "https://www.mediafire.com/file/lynepcbya5lky30/Gravity+Expansion+(addon).mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "8.52 MB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 25,
+    nama: "Kipper's Boos Box",
+    pembuat: "Voxz Official",
+    kategori: "Add-on",
+    gambar: "https://files.catbox.moe/y1mbkb.jpg",
+    linkUnduh: "https://www.mediafire.com/file/7fko83rxxo892g5/Kipper’s+Boss+Box+(addon).mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "20.27 MB",
+    deskripsi: "No Captions."
+  }
+  {
+    id: 26,
+    nama: "Scurity Mansion",
+    pembuat: "Voxz Official",
+    kategori: "Map",
+    gambar: "https://ibb.co.com/TxRwQ6z7",
+    linkUnduh: "https://www.mediafire.com/file/auj3cyau1l3agk1/Security_Mansion.mctemplate/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "7 MB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 27,
+    nama: "Wands",
+    pembuat: "Yuki Mc",
+    kategori: "Add-on",
+    gambar: "https://ibb.co.com/VGQB19Y",
+    linkUnduh: "https://www.mediafire.com/file/wiy2fagefhrl6g6/WANDS+(addon).mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "746.79 KB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 28,
+    nama: "Animal Armor",
+    pembuat: "Yuki Mc",
+    kategori: "Add-on",
+    gambar: "https://ibb.co.com/5g5qV0Gx",
+    linkUnduh: "https://www.mediafire.com/file/68xpylnhbhgi209/Animal+Armor+_by_kingfad.mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "858.79 KB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 29,
+    nama: "Realm Management Tool",
+    pembuat: "Kouna",
+    kategori: "Add-on",
+    gambar: "https://ibb.co.com/HTGWxkvp",
+    linkUnduh: "https://www.mediafire.com/file/tos5rpv0epqd5eh/Realm_Management_Tool_-_V1.4_%2528addon%2529.mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "413.37 KB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 30,
+    nama: "Auto Farming",
+    pembuat: "Kouna",
+    kategori: "Add-on",
+    gambar: "https://ibb.co.com/20MKpGyy",
+    linkUnduh: "https://www.mediafire.com/file/uac53jafua6epyt/Auto+Farming+Add-On+(addon).mcaddon/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "1.74 MB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 31,
+    nama: "Spongebob Biomes",
+    pembuat: "Voxz Official",
+    kategori: "Map",
+    gambar: "https://ibb.co.com/BHcc9Xd7",
+    linkUnduh: "https://www.mediafire.com/file/2nj53660ea1kifd/SpongeBob+Biomes+(MDF)+(Extract+Zip).mctemplate.zip/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "70 MB",
+    deskripsi: "No Captions."
   }
 ];
