@@ -5,9 +5,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontak | Voxz Market Place</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ==========================================
+           STIL UMUM & NAVIGASI
+        ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        :root {
+            --gelap-utama: #12141d;
+            --abu-sedang: #2a2d3f;
+            --abu-terang: #8a8fb0;
+            --putih: #e0e3f3;
+            --hijau: #2dd4a0;
+            --emas: #ffd700;
+            --ungu: #7928ca;
+        }
+
+        body {
+            background: var(--gelap-utama);
+            color: var(--putih);
+            min-height: 100vh;
+        }
+        
+        .container {
+            padding: 80px 20px 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ==========================================
+           STIL KARTU PROFIL RPG
+        ========================================== */
+        .rpg-kartu-profil {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            background: linear-gradient(145deg, #1a1d2b, #25293b);
+            border-radius: 18px;
+            padding: 40px 25px 30px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.15);
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+        }
+
+        /* Bingkai Hiasan RPG */
+        .bingkai-atas, .bingkai-bawah {
+            position: absolute;
+            left: 15px;
+            right: 15px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--emas), transparent);
+        }
+        .bingkai-atas { top: 10px; }
+        .bingkai-bawah { bottom: 10px; }
+
+        /* Wadah Foto Profil */
+        .wadah-foto {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 3px solid var(--emas);
+            padding: 3px;
+            background: #1a1d2b;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .foto-rpg {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .efek-kilat {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: kilat 4s infinite;
+        }
+
+        @keyframes kilat {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        /* Teks Profil */
+        .nama-pengembang {
+            font-size: 24px;
+            color: var(--emas);
+            margin: 0 0 5px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .status-peran {
+            font-size: 14px;
+            color: var(--hijau);
+            margin: 0 0 8px;
+            font-weight: 500;
+        }
+
+        .deskripsi-kecil {
+            font-size: 13px;
+            color: var(--abu-terang);
+            margin: 0;
+        }
+
+        /* Pemisah Bergaya */
+        .pemisah-rpg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        .pemisah-rpg .garis {
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 215, 0, 0.3);
+        }
+        .pemisah-rpg .titik {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--emas);
+        }
+
+        /* Tombol Kontak */
+        .daftar-kontak {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tombol-kontak {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #2d324a, #3a405f);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tombol-kontak:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--emas);
+        }
+
+        .tombol-kontak.wa {
+            background: linear-gradient(135deg, #128c7e, #25d366);
+        }
+        .tombol-kontak.bot {
+            background: linear-gradient(135deg, #4a6cf7, var(--ungu));
+        }
+    </style>
 </head>
 <body>
-
 <button class="menu-toggle" id="menuToggle">☰</button>
 
 <div class="sidebar" id="sidebar">
@@ -16,27 +191,70 @@
     </div>
     <nav class="sidebar-nav">
         <a href="index.html">• Beranda</a>
-        <a href="index.html">• Koleksi</a>
-        <a href="tentang.html">• Info</a>
+        <a href="index.html#koleksi">• Koleksi</a>
+        <a href="tentang.html" class="active">• Info</a>
         <a href="kontak.html">• Kontak</a>
         <a href="contri.html">• Upload</a>
-        <a href="top.html">• Official Team Channel </a>
+        <a href="top.html">• Official Channel</a>
     </nav>
 </div>
 
+
 <div class="overlay" id="overlay"></div>
 
-<div class="container" style="padding: 80px 20px;">
-    <h1 class="judul-bagian">📞 Kontak Kami</h1>
-    <div class="kotak-info" style="text-align: center;">
-        <p>Butuh bantuan, ingin membagikan addon buatanmu, atau ada saran & masukan?</p>
-        <br>
-        <a href="https://t.me/VoxzHere" target="_blank" class="btn">Hubungi via Telegram</a>
-        <br><br>
-        <a href="https://wa.me/6285808961132" target="_blank" class="btn btn-donasi">Hubungi Via WhatsApp</a>
+<div class="container">
+    <div class="rpg-kartu-profil">
+        <div class="bingkai-atas"></div>
+        <div class="bingkai-bawah"></div>
+
+        <div class="wadah-foto">
+            <img src="https://files.catbox.moe/z73g37.jpg" alt="Voxz Profil" class="foto-rpg">
+            <div class="efek-kilat"></div>
+        </div>
+
+        <h2 class="nama-pengembang">VOXZ TEAM</h2>
+        <p class="status-peran">Penyedia Addon & Resource Minecraft</p>
+        <p class="deskripsi-kecil">Siap bantu wujudkan pengalaman bermain terbaikmu!</p>
+
+        <div class="pemisah-rpg">
+            <span class="titik"></span>
+            <span class="garis"></span>
+            <span class="titik"></span>
+        </div>
+
+        <div class="daftar-kontak">
+<a href="https://t.me/VoxzHere" target="_blank" class="tombol-kontak">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 2L11 13"></path>
+        <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+    </svg>
+    Hubungi Via Telegram
+</a>
+
+
+            <a href="https://wa.me/6285808961132" target="_blank" class="tombol-kontak wa">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 18h-.5A2.5 2.5 0 0 1 4 15.5v-9A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v9a2.5 2.5 0 0 1-2.5 2.5H13l-4 3v-3z"></path>
+                    <path d="M8 10h8"></path>
+                    <path d="M8 14h5"></path>
+                </svg>
+                Hubungi Via WhatsApp
+            </a>
+
+<a href="#" target="_blank" class="tombol-kontak">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+  <path d="M22 7l-10 7L2 7"></path>
+</svg>
+    Support Tim Kami
+</a>
+
+
+        </div>
     </div>
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>

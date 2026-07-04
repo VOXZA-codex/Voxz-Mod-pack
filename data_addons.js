@@ -339,5 +339,71 @@ const daftarAddon = [
     kompatibel: "MCPE 1.21 - 1.26+",
     ukuran: "70 MB",
     deskripsi: "No Captions."
-  }
+  },
+  {
+    id: 32,
+    nama: "Eternal Fears",
+    pembuat: "Fajar",
+    kategori: "Skins",
+    gambar: "https://files.catbox.moe/v8458l.jpg",
+    linkUnduh: "https://www.mediafire.com/file/v6nqvr7fo2wvcw2/Eternal+Fears+(skin_pack).mcpack/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "16.05 KB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 33,
+    nama: "Dark Samurai",
+    pembuat: "Fajar",
+    kategori: "Skins",
+    gambar: "https://files.catbox.moe/26yax5.jpg",
+    linkUnduh: "https://www.mediafire.com/file/n0ohry6jcqyq403/Dark+Samurai+(skin_pack).mcpack/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "46.6 KB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 34,
+    nama: "Isekai Anime",
+    pembuat: "Fajar",
+    kategori: "Skins",
+    gambar: "https://files.catbox.moe/c0rr43.jpg",
+    linkUnduh: "https://www.mediafire.com/file/giltdhsdjupmc8i/Isekai+Anime+(skin_pack).mcpack/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "55.73 KB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 35,
+    nama: "Lava!",
+    pembuat: "Fajar",
+    kategori: "Skins",
+    gambar: "https://files.catbox.moe/xs5rmr.jpg",
+    linkUnduh: "https://www.mediafire.com/file/yuutc4fpt8u89b9/LAVA!+(skin_pack).mcpack/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "20.93 KB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 36,
+    nama: "Anime Champions",
+    pembuat: "Voxz Official",
+    kategori: "Skins",
+    gambar: "https://files.catbox.moe/2ph9q7.jpeg",
+    linkUnduh: "https://www.mediafire.com/file/qwvc3fpka0p84u7/Anime_Champions_%2528skin_pack%2529.mcpack/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "15.30 KB",
+    deskripsi: "No Captions."
+  },
+  {
+    id: 37,
+    nama: "Anime Villains",
+    pembuat: "Voxz Official",
+    kategori: "Skins",
+    gambar: "https://files.catbox.moe/qm3hrm.jpg",
+    linkUnduh: "https://www.mediafire.com/file/7xgg3eadzwtjhhf/Anime_Villains_%2528skin_pack%2529.mcpack/file",
+    kompatibel: "MCPE 1.21 - 1.26+",
+    ukuran: "39.01 KB",
+    deskripsi: "No Captions."
+  },
 ];
