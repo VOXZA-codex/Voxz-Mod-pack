@@ -3,60 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tim & Saluran | Voxz Market Place</title>
+    <title>Tim & Saluran | Voxz Modpack</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .konten-bantu {
-            padding: 80px 20px;
-            max-width: 600px;
+            padding: 90px 20px 100px;
+            max-width: 620px;
             margin: 0 auto;
         }
 
         .judul-halaman {
             text-align: center;
-            color: var(--utama);
-            margin-bottom: 30px;
-            font-size: 24px;
-        }
-
-        /* Gaya tombol/box lebar tapi pendek */
-        .kotak-saluran {
-            width: 100%;
-            background: var(--abu);
-            border: 1px solid var(--abu-terang);
-            border-radius: 12px;
-            padding: 12px 16px;
-            margin-bottom: 14px;
+            color: var(--emas);
+            margin-bottom: 35px;
+            font-size: 26px;
+            text-shadow: 0 0 15px rgba(255,215,0,0.25);
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .judul-halaman svg {
+            width: 26px;
+            height: 26px;
+            stroke: currentColor;
+        }
+
+        /* Kartu Saluran Gaya RPG Modern */
+        .kotak-saluran {
+            width: 100%;
+            background: linear-gradient(145deg, rgba(30,30,41,0.9), rgba(18,18,24,0.95));
+            border: 2px solid rgba(46,204,113,0.2);
+            border-radius: 14px;
+            padding: 15px 18px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
             text-decoration: none;
             color: var(--putih);
-            transition: 0.2s;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kotak-saluran::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--hijau), var(--emas));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .kotak-saluran:hover {
-            background: var(--abu-terang);
-            transform: translateY(-1px);
+            transform: translateY(-3px) translateX(3px);
+            border-color: var(--emas);
+            box-shadow: 0 8px 20px rgba(255,215,0,0.15);
+            padding-left: 22px;
+        }
+
+        .kotak-saluran:hover::before {
+            opacity: 1;
         }
 
         .foto-saluran {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--utama);
+            border: 3px solid var(--hijau);
+            box-shadow: 0 0 12px rgba(46,204,113,0.25);
+            flex-shrink: 0;
+            background: var(--abu);
         }
 
         .info-saluran h3 {
-            font-size: 16px;
-            margin: 0;
+            font-size: 17px;
+            margin: 0 0 4px;
+            color: var(--putih);
+            font-weight: 600;
         }
 
         .info-saluran p {
             font-size: 13px;
-            opacity: 0.7;
-            margin: 2px 0 0;
+            color: #b0b5d0;
+            margin: 0;
+        }
+
+        .label-saluran {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 2px 8px;
+            background: rgba(46,204,113,0.15);
+            color: var(--hijau);
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -72,11 +119,11 @@
     </div>
     <nav class="sidebar-nav">
         <a href="index.html">• Beranda</a>
-        <a href="index.html">• Koleksi</a>
+        <a href="index.html#koleksi">• Koleksi</a>
         <a href="tentang.html">• Info</a>
         <a href="kontak.html">• Kontak</a>
         <a href="contri.html">• Upload</a>
-        <a href="top.html">• Official Team Channel </a>
+        <a href="top.html" class="active">• Official Team Channel</a>
     </nav>
 </div>
 
@@ -84,47 +131,56 @@
 
 <!-- Isi Halaman -->
 <div class="konten-bantu">
-    <h2 class="judul-halaman">Official Team Channel</h2>
+    <h2 class="judul-halaman">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        Official Team Channel 
+    </h2>
 
-    <!-- Contoh 1 -->
-        <a href="https://whatsapp.com/channel/0029Vb8346EKAwEkgyvMcu0g" target="_blank" class="kotak-saluran">
-        <img src="https://files.catbox.moe/p6ulw1.jpg" alt="Profil" class="foto-saluran">
-        <div class="info-saluran">
-            <h3>VOXZA | COMUNITY</h3>
-        </div>
-    </a>
-    
+    <!-- Saluran 1 -->
     <a href="https://whatsapp.com/channel/0029Vb8AqEB8fewv6b7kjK3D" target="_blank" class="kotak-saluran">
         <img src="https://files.catbox.moe/py0k7y.jpg" alt="Profil" class="foto-saluran">
         <div class="info-saluran">
             <h3>𝗗𝗭𝗔𝗞𝗜┃𝗖𝗛𝗔𝗡𝗡𝗘𝗟</h3>
+            <p></p>
+            <span class="label-saluran">Content Partner</span>
         </div>
     </a>
 
-    <!-- Contoh 2 - Tambah lagi kalau ada -->
-
+    <!-- Saluran 2 -->
     <a href="https://whatsapp.com/channel/0029VbARZ0L7YSd1C4Sky52J" target="_blank" class="kotak-saluran">
         <img src="https://files.catbox.moe/22473w.jpg" alt="Profil" class="foto-saluran">
         <div class="info-saluran">
-            <h3>KuonaMC | Bagi" Add-On ||『𝐄𝐂』</h3>
+            <h3>KuonaMC | Bagi Add-On</h3>
+            <p>Koleksi addon & resource pack</p>
+            <span class="label-saluran">Creator Partner</span>
         </div>
     </a>
     
-<a href="https://whatsapp.com/channel/0029VbBwXsd1NCrUD2ZJcT0D" target="_blank" class="kotak-saluran">
+    <!-- Saluran 3 -->
+    <a href="https://whatsapp.com/channel/0029VbBwXsd1NCrUD2ZJcT0D" target="_blank" class="kotak-saluran">
         <img src="https://files.catbox.moe/idvfzk.jpg" alt="Profil" class="foto-saluran">
         <div class="info-saluran">
             <h3>Mods And Addons</h3>
+            <p>Koleksi addon & resource pack</p>
+            <span class="label-saluran">Creator Partner</span>
         </div>
     </a>
     
-<a href="https://whatsapp.com/channel/0029Vb7wbA3LY6dAJ2wAJ71v" target="_blank" class="kotak-saluran">
+    <!-- Saluran 4 -->
+    <a href="https://whatsapp.com/channel/0029Vb7wbA3LY6dAJ2wAJ71v" target="_blank" class="kotak-saluran">
         <img src="https://i.postimg.cc/J44vL5SF/IMG-20260703-WA0035.jpg" alt="Profil" class="foto-saluran">
         <div class="info-saluran">
             <h3>FAJAR | MC</h3>
+            <p>Koleksi addon & resource pack</p>
+            <span class="label-saluran">Creator Parner</span>
         </div>
     </a>
 
-    <!-- Salin blok di atas untuk tambah lebih banyak -->
 </div>
 
 <script src="script.js"></script>
