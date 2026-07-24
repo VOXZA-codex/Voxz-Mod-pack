@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk Akun - VOXZ</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        :root {
+            --utama: #6366f1; --bg-gelap: #0f111a; --bg-kartu: #1a1d2b;
+            --bg-item: #252836; --teks-putih: #ffffff; --teks-abu: #a8b2d1;
+            --batas: #2d3142; --sukses: #10b981; --bahaya: #ef4444; --bulat: 12px;
+        }
+        body {
+            background: var(--bg-gelap); color: var(--teks-putih); min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+
+        /* LOGO RGB */
+        .logo-voxz {
+            width: 80px; height: 80px; border-radius: 50%; background: var(--bg-kartu);
+            display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 900;
+            position: relative; margin-bottom: 15px;
+        }
+        .logo-voxz::before {
+            content: ''; position: absolute; inset: -3px; border-radius: 50%;
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%; z-index: -1; animation: rgb-gerak 20s linear infinite;
+        }
+        @keyframes rgb-gerak { 0% { background-position: 0 0; } 50% { background-position: 400% 0; } 100% { background-position: 0 0; } }
+
+        .judul { font-size: 24px; font-weight: 700; margin-bottom: 5px; }
+        .sub { font-size: 13px; color: var(--teks-abu); margin-bottom: 30px; }
+
+        .kotak {
+            width: 100%; max-width: 400px; background: var(--bg-kartu); border: 1px solid var(--batas);
+            border-radius: var(--bulat); padding: 25px;
+        }
+        .grup-input { margin-bottom: 15px; }
+        .label { font-size: 13px; font-weight: 500; margin-bottom: 6px; display: block; }
+        .input {
+            width: 100%; padding: 12px 15px; background: var(--bg-item); border: 1px solid var(--batas);
+            border-radius: 8px; color: white; font-size: 14px; outline: none;
+        }
+        .input:focus { border-color: var(--utama); }
+
+        .tombol {
+            width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 15px; font-weight: 600;
+            cursor: pointer; transition: 0.2s; margin-top: 5px;
+        }
+        .tombol-utama { background: var(--utama); color: white; }
+        .tombol-utama:hover { background: #4f46e5; }
+        .tombol-balik { background: transparent; color: var(--teks-abu); margin-top: 10px; }
+        .tombol-balik:hover { color: var(--utama); }
+
+        .pesan { margin-top: 15px; font-size: 13px; text-align: center; }
+        .pesan.salah { color: var(--bahaya); }
+        .pesan.benar { color: var(--sukses); }
+        .tautan { color: var(--utama); text-decoration: none; font-weight: 500; display: inline-block; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="logo-voxz">V</div>
+<h1 class="judul">Selamat Datang Kembali</h1>
+<p class="sub">Masuk ke akun kamu</p>
+
+<div class="kotak">
+    <div class="grup-input">
+        <label class="label">Nama Pengguna</label>
+        <input type="text" class="input" id="namaPengguna" placeholder="Masukkan nama kamu">
+    </div>
+    <div class="grup-input">
+        <label class="label">Kata Sandi</label>
+        <input type="password" class="input" id="kataSandi" placeholder="Masukkan kata sandi">
+    </div>
+
+    <button class="tombol tombol-utama" onclick="prosesLogin()">Masuk Sekarang</button>
+    <div class="pesan">
+        Belum punya akun? <a href="daftar.html" class="tautan">Buat Akun Baru</a>
+    </div>
+    <button class="tombol tombol-balik" onclick="window.location.href='index.html'">← Kembali ke Beranda</button>
+
+    <div class="pesan" id="pesanInfo"></div>
+</div>
+
+<script>
+// === PROSES LOGIN ===
+function prosesLogin() {
+    const nama = document.getElementById('namaPengguna').value.trim();
+    const sandi = document.getElementById('kataSandi').value.trim();
+    const pesan = document.getElementById('pesanInfo');
+
+    if(!nama || !sandi) {
+        pesan.className = "pesan salah";
+        pesan.textContent = "⚠️ Isi semua kolom ya!";
+        return;
+    }
+
+    const daftarAkun = JSON.parse(localStorage.getItem('daftarAkunVoxz') || '[]');
+    const ditemukan = daftarAkun.find(a => a.nama === nama && a.sandi === sandi);
+
+    if(ditemukan) {
+        localStorage.setItem('akunVoxz', JSON.stringify({
+            nama: nama, status: "login", waktu: new Date().toLocaleString('id-ID')
+        }));
+        pesan.className = "pesan benar";
+        pesan.textContent = "✅ Berhasil masuk! Dialihkan...";
+        setTimeout(() => window.location.href = "index.html", 1500);
+    } else {
+        pesan.className = "pesan salah";
+        pesan.textContent = "❌ Nama atau kata sandi salah!";
+    }
+}
+
+// === CEK SUDAH LOGIN ===
+function cekLogin() {
+    const akun = JSON.parse(localStorage.getItem('akunVoxz') || 'null');
+    if(akun && akun.status === "login") {
+        alert(`Kamu sudah masuk sebagai ${akun.nama}`);
+        window.location.href = "index.html";
+    }
+}
+cekLogin();
+</script>
+</body>
+</html>

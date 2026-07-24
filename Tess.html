@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voxz Addon Modpack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        :root {
+            --utama: #6366f1;
+            --hijau: #22c55e;
+            --bg-gelap: #0f111a;
+            --bg-kartu: #1a1d2b;
+            --bg-tombol: #2d3142;
+            --teks-putih: #ffffff;
+            --teks-abu: #a8b2d1;
+            --batas: #2d3142;
+            --bulat: 10px;
+        }
+
+        body {
+            background: var(--bg-gelap);
+            color: var(--teks-putih);
+            min-height: 100vh;
+            padding-bottom: 20px;
+        }
+
+        /* POPUP */
+        .latar-pengikut {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 15px;
+        }
+        .kotak-pengikut {
+            background: var(--bg-kartu);
+            border-radius: var(--bulat);
+            border: 1px solid var(--batas);
+            padding: 25px 18px;
+            max-width: 360px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+        .tombol-tutup {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            font-size: 24px;
+            color: var(--teks-abu);
+            cursor: pointer;
+        }
+        .foto-profil {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--utama);
+            margin-bottom: 15px;
+        }
+        .kotak-pengikut h3 { font-size: 18px; margin-bottom: 6px; }
+        .kotak-pengikut p { font-size: 13px; color: var(--teks-abu); margin-bottom: 18px; }
+        .btn-ikut-wa {
+            display: block;
+            width: 100%;
+            padding: 11px;
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* TOMBOL MENU */
+        .menu-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: rgba(26,29,43,0.9);
+            border: 1px solid var(--batas);
+            color: white;
+            font-size: 20px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -260px;
+            width: 260px;
+            height: 100vh;
+            background: var(--bg-kartu);
+            border-right: 1px solid var(--batas);
+            z-index: 1001;
+            transition: 0.3s;
+            padding: 20px 15px;
+        }
+        .sidebar.buka { left: 0; }
+        .sidebar-header h2 { font-size: 18px; color: var(--utama); }
+        .sidebar-nav a {
+            display: block;
+            padding: 10px 12px;
+            color: var(--teks-abu);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .sidebar-nav a:hover { background: rgba(99,102,241,0.1); color: var(--utama); }
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        .overlay.aktif { display: block; }
+
+        /* KONTEN UTAMA */
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 60px 12px 20px;
+        }
+        .judul-bagian {
+            font-size: 20px;
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+        .kontrol {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 0 5px;
+        }
+        .kontrol select, .kontrol input {
+            padding: 10px 12px;
+            background: var(--bg-kartu);
+            border: 1px solid var(--batas);
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+        }
+        .kontrol input { flex: 1; }
+
+        /* ✅ KARTU PERSIS SESUAI CONTOH KAMU */
+        .grid-addon {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .kartu-addon {
+            background: var(--bg-kartu);
+            border-radius: var(--bulat);
+            overflow: hidden;
+            border: 1px solid var(--batas);
+        }
+        .gambar-addon {
+            width: 100%;
+            height: auto;
+            max-height: 240px;
+            object-fit: cover;
+        }
+        .isi-kartu {
+            padding: 15px;
+        }
+        .nama-addon {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .pembuat-addon {
+            font-size: 14px;
+            color: var(--teks-abu);
+            margin-bottom: 10px;
+        }
+        .label-gratis {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--hijau);
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        .label-gratis::before {
+            content: "✅";
+            font-size: 16px;
+        }
+        .suka {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--teks-abu);
+            font-size: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        .tombol-grup {
+            display: flex;
+            gap: 12px;
+        }
+        .btn-detail, .btn-unduh {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-detail {
+            background: var(--bg-tombol);
+            color: var(--teks-putih);
+        }
+        .btn-unduh {
+            background: var(--hijau);
+            color: white;
+        }
+        .btn-unduh:hover { background: #16a34a; }
+    </style>
+</head>
+<body>
+
+<!-- POPUP -->
+<div class="latar-pengikut" id="popupIkuti">
+    <div class="kotak-pengikut">
+        <span class="tombol-tutup" onclick="tutupPopup()">×</span>
+        <img src="https://files.catbox.moe/kg207t.png" alt="Profil" class="foto-profil">
+        <h3>Follow Chanel Kami!</h3>
+        <p>Dapatkan info update terbaru, dan rilis eksklusif langsung di WhatsApp!</p>
+        <a href="https://whatsapp.com/channel/0029Vb8ov9dGufIpSOFk3f3w" target="_blank" class="btn-ikut-wa">Follow Sekarang</a>
+    </div>
+</div>
+
+<!-- TOMBOL MENU DI KANAN ATAS SESUAI CONTOH -->
+<button class="menu-toggle" id="menuToggle">☰</button>
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h2>VOXZ MARKET PLACE</h2>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="#beranda">• Beranda</a>
+        <a href="#koleksi">• Koleksi</a>
+        <a href="tentang.html">• Info</a>
+        <a href="kontak.html">• Kontak</a>
+        <a href="contri.html">• Upload</a>
+        <a href="top.html">• Official Team Channel</a>
+    </nav>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<div class="container">
+    <h2 class="judul-bagian">📦 Addon List</h2>
+    <div class="kontrol">
+        <select id="filterKategori">
+            <option value="semua">All Categories</option>
+            <option value="Add-on">Add-on</option>
+            <option value="Texture">Texture</option>
+            <option value="Map">World</option>
+            <option value="Skins">Skins</option>
+        </select>
+        <input type="text" id="cariInput" placeholder="Cari nama addon...">
+    </div>
+
+    <div class="grid-addon" id="daftarAddon">
+        <!-- Kartu 1: Plants VS Zombie -->
+        <div class="kartu-addon">
+            <img src="https://files.catbox.moe/xxxxxx.png" alt="Plants VS Zombie" class="gambar-addon">
+            <div class="isi-kartu">
+                <h3 class="nama-addon">Plants VS Zombie</h3>
+                <p class="pembuat-addon">Upload: Voxz Official</p>
+                <div class="label-gratis">GRATIS</div>
+                <div class="suka">❤️ 0</div>
+                <div class="tombol-grup">
+                    <button class="btn-detail">Detail</button>
+                    <button class="btn-unduh">Unduh</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kartu 2: The Dawn Era -->
+        <div class="kartu-addon">
+            <img src="https://files.catbox.moe/yyyyyy.png" alt="The Dawn Era" class="gambar-addon">
+            <div class="isi-kartu">
+                <h3 class="nama-addon">The Dawn Era</h3>
+                <p class="pembuat-addon">Upload: Voxz Official</p>
+                <div class="label-gratis">GRATIS</div>
+                <div class="suka">❤️ 0</div>
+                <div class="tombol-grup">
+                    <button class="btn-detail">Detail</button>
+                    <button class="btn-unduh">Unduh</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="data_addons.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

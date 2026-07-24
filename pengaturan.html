@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengaturan - VOXZ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        :root {
+            --utama: #6366f1;
+            --bg-gelap: #0f111a;
+            --bg-kartu: #1a1d2b;
+            --bg-item: #252836;
+            --teks-putih: #ffffff;
+            --teks-abu: #a8b2d1;
+            --batas: #2d3142;
+            --sukses: #10b981;
+            --peringatan: #f59e0b;
+            --bahaya: #ef4444;
+            --bulat: 10px;
+        }
+
+        body {
+            background: var(--bg-gelap);
+            color: var(--teks-putih);
+            min-height: 100vh;
+            padding: 70px 15px 90px;
+        }
+
+        /* === LOGO PROFIL DENGAN GARIS RGB === */
+        .logo-voxz {
+            display: block;
+            margin: 0 auto 15px;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: var(--bg-kartu);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 900;
+            color: white;
+            position: relative;
+        }
+        /* Garis Tepi RGB Warna-Warni */
+        .logo-voxz::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            z-index: -1;
+            animation: rgb-gerak 20s linear infinite;
+        }
+        @keyframes rgb-gerak {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        /* TOMBOL KEMBALI PAKAI IKON */
+        .kembali {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: var(--bg-kartu);
+            border: 1px solid var(--batas);
+            color: var(--teks-putih);
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            z-index: 100;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .kembali:hover {
+            border-color: var(--utama);
+            color: var(--utama);
+        }
+        .kembali svg { width: 18px; height: 18px; }
+
+        /* JUDUL HALAMAN */
+        .judul-halaman {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .sub-judul {
+            text-align: center;
+            font-size: 13px;
+            color: var(--teks-abu);
+            margin-bottom: 25px;
+        }
+
+        /* KELOMPOK PENGATURAN */
+        .kelompok {
+            background: var(--bg-kartu);
+            border-radius: var(--bulat);
+            border: 1px solid var(--batas);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .label-kelompok {
+            font-size: 12px;
+            color: var(--teks-abu);
+            padding: 12px 15px 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            font-weight: 600;
+        }
+
+        /* ITEM PENGATURAN DENGAN IKON BUATAN */
+        .item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 15px;
+            border-bottom: 1px solid var(--batas);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .item:last-child { border-bottom: none; }
+        .item:hover { background: var(--bg-item); }
+        .kiri { display: flex; align-items: center; gap: 12px; }
+        .ikon { 
+            width: 24px; height: 24px; 
+            display: flex; align-items: center; justify-content: center;
+            color: var(--utama);
+        }
+        .ikon svg { width: 22px; height: 22px; }
+        .teks { font-size: 15px; font-weight: 500; }
+        .keterangan { font-size: 12px; color: var(--teks-abu); margin-top: 2px; }
+        .nilai { font-size: 13px; color: var(--teks-abu); margin-right: 8px; }
+
+        /* TOMBOL GESER */
+        .saklar {
+            width: 44px; height: 24px; background: var(--batas); border-radius: 20px;
+            position: relative; transition: 0.3s; cursor: pointer;
+        }
+        .saklar.aktif { background: var(--utama); }
+        .saklar::after {
+            content: ''; position: absolute; top: 2px; left: 2px;
+            width: 20px; height: 20px; background: white; border-radius: 50%; transition: 0.3s;
+        }
+        .saklar.aktif::after { transform: translateX(20px); }
+
+        /* PILIHAN & RANGE */
+        .pilih {
+            background: var(--bg-item); border: 1px solid var(--batas); color: white;
+            padding: 6px 10px; border-radius: 6px; font-size: 13px; outline: none;
+        }
+        .range { width: 130px; accent-color: var(--utama); }
+
+        /* TOMBOL AKSI */
+        .tombol-aksi {
+            width: 100%; padding: 12px; border: none; border-radius: 8px;
+            font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.2s;
+            margin: 5px 0;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .tombol-biasa { background: var(--bg-item); color: white; }
+        .tombol-bahaya { background: rgba(239,68,68,0.15); color: var(--bahaya); border: 1px solid var(--bahaya); }
+        .tombol-sukses { background: rgba(16,185,129,0.15); color: var(--sukses); border: 1px solid var(--sukses); }
+        .tombol-aksi svg { width: 18px; height: 18px; }
+
+        /* NAVIGASI BAWAH */
+        .nav-bawah {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: #17171f; border-top: 1px solid #2b2c3a;
+            display: flex; justify-content: space-around; align-items: center;
+            padding: 14px 20px; z-index: 999;
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 5px;
+            color: #7a7c94; text-decoration: none; font-size: 12px; font-weight: 500;
+            transition: all 0.25s ease;
+        }
+        .nav-item.aktif { color: var(--utama); }
+        .nav-item svg { width: 24px; height: 24px; transition: transform 0.2s; }
+        .nav-item.aktif svg { transform: scale(1.1); }
+
+        /* POPUP INFO */
+        .popup-info {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(0.9);
+            background: var(--bg-kartu); border: 1px solid var(--batas); border-radius: 12px;
+            padding: 25px 20px; max-width: 320px; width: 90%; text-align: center;
+            z-index: 9999; opacity: 0; visibility: hidden; transition: 0.3s;
+        }
+        .popup-info.tampil { opacity: 1; visibility: visible; transform: translate(-50%,-50%) scale(1); }
+        .popup-info h3 { margin-bottom: 10px; font-size: 18px; }
+        .popup-info p { font-size: 14px; color: var(--teks-abu); margin-bottom: 20px; line-height: 1.5; }
+        .popup-info button { padding: 10px 25px; background: var(--utama); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+        .latar-popup { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 9998; display: none; }
+        .latar-popup.aktif { display: block; }
+    </style>
+</head>
+<body>
+
+<!-- TOMBOL KEMBALI -->
+<a href="index.html" class="kembali">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+</a>
+
+<!-- LOGO DENGAN GARIS RGB -->
+<div class="logo-voxz">𖥸</div>
+<h1 class="judul-halaman">Pengaturan</h1>
+<p class="sub-judul">VOXZ Modpack v1.1.0</p>
+
+<!-- KELOMPOK TAMPILAN -->
+<div class="kelompok">
+    <div class="label-kelompok">Tampilan & Tema</div>
+    
+    <div class="item">
+        <div class="kiri">
+            <div class="ikon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </div>
+            <div><div class="teks">Mode Gelap</div><div class="keterangan">Latar gelap sepenuhnya</div></div>
+        </div>
+        <div class="saklar aktif" id="modeGelap"></div>
+    </div>
+
+    <div class="item">
+        <div class="kiri">
+            <div class="ikon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+            </div>
+            <div class="teks">Warna Utama</div>
+        </div>
+        <select class="pilih" id="warnaUtama">
+            <option value="#6366f1">Ungu</option>
+            <option value="#ec4899">Merah Muda</option>
+            <option value="#ef4444">Merah</option>
+            <option value="#10b981">Hijau</option>
+            <option value="#f59e0b">Oranye</option>
+            <option value="#3b82f6">Biru</option>
+        </select>
+    </div>
+
+    <div class="item">
+        <div class="kiri">
+            <div class="ikon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+            </div>
+            <div class="teks">Efek Animasi</div>
+        </div>
+        <div class="saklar aktif" id="efekAnimasi"></div>
+    </div>
+
+    <div class="item">
+        <div class="kiri">
+            <div class="ikon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+                </svg>
+            </div>
+            <div class="teks">Ukuran Teks</div>
+        </div>
+        <span class="nilai" id="nilaiUkuran">Normal</span>
+        <input type="range" min="1" max="3" value="2" class="range" id="ukuranTeks">
+    </div>
+</div>
+
+<!-- KELOMPOK UNDUHAN -->
+<div class="kelompok">
+    <div class="label-kelompok">Unduhan & File</div>
+    
+    <div class="item">
+        <div class="kiri">
+            <div class="ikon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                    <line x1="12" y1="18" x2="12" y2="18"/>
+                </svg>
+            </div>
+            <div class="teks">Format .mcpack Otomatis</div>
+        </div>
+        <div class="saklar aktif" id="formatOtomatis"></div>
+    </div>
+
+    <div class="item">
+        <div class="kiri">
+            <div class="ikon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                </svg>
+            </div>
+            <div class="teks">Simpan Riwayat Unduhan</div>
+        </div>
+        <div class="saklar aktif" id="simpanRiwayat"></div>
+    </div>
+
+    <div class="item">
+        <div class="kiri">
+            <div class="ikon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+            </div>
+            <div class="teks">Notifikasi Update Addon</div>
+        </div>
+        <div class="saklar" id="notifUpdate"></div>
+    </div>
+
+    <div class="item">
+        <div class="kiri">
+            <div class="ikon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+            </div>
+            <div class="teks">Unduh Lebih Cepat</div>
+        </div>
+        <div class="saklar aktif" id="unduhCepat"></div>
+    </div>
+</div>
+
+<!-- KELOMPOK PRIVASI -->
+<div class="kelompok">
+    <div class="label-kelompok">Privasi & Keamanan</div>
+    
+    <div class="item">
+        <div class="kiri">
+            <div class="ikon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+            </div>
+            <div class="teks">Periksa File Aman</div>
+        </div>
+        <div class="saklar aktif" id="cekAman"></div>
+    </div>
+
+    <div class="item">
+        <div class="kiri">
+            <div class="ikon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+            </div>
+            <div class="teks">Bantu Perbaiki Aplikasi</div>
+        </div>
+        <div class="saklar" id="kirimData"></div>
+    </div>
+</div>
+
+<!-- KELOMPOK TINDAKAN -->
+<div class="kelompok">
+    <div class="label-kelompok">Tindakan</div>
+    
+    <button class="tombol-aksi tombol-biasa" id="cekUpdate">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 4v6h-6M1 20v-6h6"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+        </svg>
+        Cek Versi Terbaru
+    </button>
+    <button class="tombol-aksi tombol-sukses" id="bagikan">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+        Bagikan Halaman Ini
+    </button>
+    <button class="tombol-aksi tombol-biasa" id="kontakKami">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+        Hubungi Kami
+    </button>
+    <button class="tombol-aksi tombol-bahaya" id="hapusSemua">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+        </svg>
+        Hapus Semua Pengaturan
+    </button>
+</div>
+
+<!-- KELOMPOK TENTANG -->
+<div class="kelompok">
+    <div class="label-kelompok">Tentang</div>
+    
+    <div class="item" id="tombolTentang">
+        <div class="kiri">
+            <div class="ikon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="16" x2="12" y2="12"/>
+                    <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+            </div>
+            <div class="teks">Tentang VOXZ Modpack</div>
+        </div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:#7a7c94;">
+            <polyline points="9 18 15 12 9 6"/>
+        </svg>
+    </div>
+    <div class="item" id="tombolLisensi">
+        <div class="kiri">
+            <div class="ikon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                </svg>
+            </div>
+            <div class="teks">Lisensi & Aturan</div>
+        </div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:#7a7c94;">
+            <polyline points="9 18 15 12 9 6"/>
+        </svg>
+    </div>
+</div>
+
+<!-- NAVIGASI BAWAH -->
+<nav class="nav-bawah">
+    <a href="index.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9,22 9,12 15,12 15,22"/>
+        </svg>
+        <span>Halaman Awal</span>
+    </a>
+    <a href="#" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7,10 12,15 17,10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Unduhan</span>
+    </a>
+    <a href="pengaturan.html" class="nav-item aktif">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06-.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        <span>Pengaturan</span>
+    </a>
+</nav>
+
+<!-- POPUP -->
+<div class="latar-popup" id="latarPopup"></div>
+<div class="popup-info" id="popupInfo">
+    <h3 id="judulPopup"></h3>
+    <p id="isiPopup"></p>
+    <button onclick="tutupPopup()">Mengerti</button>
+</div>
+
+<script>
+// === FUNGSI POPUP ===
+function tampilPopup(judul, isi) {
+    document.getElementById('judulPopup').textContent = judul;
+    document.getElementById('isiPopup').textContent = isi;
+    document.getElementById('latarPopup').classList.add('aktif');
+    document.getElementById('popupInfo').classList.add('tampil');
+}
+function tutupPopup() {
+    document.getElementById('latarPopup').classList.remove('aktif');
+    document.getElementById('popupInfo').classList.remove('tampil');
+}
+
+// === FUNGSI TOMBOL GESER ===
+const semuaSaklar = document.querySelectorAll('.saklar');
+semuaSaklar.forEach(saklar => {
+    saklar.addEventListener('click', function() {
+        this.classList.toggle('aktif');
+        simpanPengaturan();
+    });
+});
+
+// === GANTI WARNA UTAMA ===
+const pilihWarna = document.getElementById('warnaUtama');
+pilihWarna.addEventListener('change', function() {
+    document.documentElement.style.setProperty('--utama', this.value);
+    simpanPengaturan();
+});
+
+// === UKURAN TEKS ===
+const ukuranTeks = document.getElementById('ukuranTeks');
+const nilaiUkuran = document.getElementById('nilaiUkuran');
+ukuranTeks.addEventListener('input', function() {
+    const label = ['Kecil', 'Normal', 'Besar'];
+    nilaiUkuran.textContent = label[this.value - 1];
+    const skala = [13,15,17][this.value - 1];
+    document.documentElement.style.fontSize = skala + 'px';
+    simpanPengaturan();
+});
+
+// === TOMBOL AKSI ===
+document.getElementById('tombolTentang').addEventListener('click', () => {
+    tampilPopup('Tentang VOXZ Marketplace', 'VOXZ Marketplace\nVersi: 1.1.0\n\nTempat kumpul addon, tekstur, peta Minecraft PE yang GRATIS, AMAN, dan mudah diunduh. Dibuat khusus untuk komunitas Indonesia!');
+});
+
+document.getElementById('tombolLisensi').addEventListener('click', () => {
+    tampilPopup('Lisensi & Aturan', 'Semua konten dibagikan untuk keperluan pribadi. Dilarang jual kembali atau klaim sebagai milik sendiri tanpa izin pembuat asli.');
+});
+
+document.getElementById('cekUpdate').addEventListener('click', () => {
+    tampilPopup('Pemeriksaan Selesai', 'Kamu sudah menggunakan versi terbaru v1.1.0');
+});
+
+document.getElementById('bagikan').addEventListener('click', () => {
+    if(navigator.share) {
+        navigator.share({title: 'VOXZ Marketplace', url: window.location.origin});
+    } else {
+        navigator.clipboard.writeText(window.location.origin);
+        tampilPopup('Berhasil Disalin', 'Tautan sudah disalin ke papan klip!');
+    }
+});
+
+document.getElementById('kontakKami').addEventListener('click', () => {
+    window.open('https://t.me/VoxzHere', '_blank');
+});
+
+document.getElementById('hapusSemua').addEventListener('click', () => {
+    if(confirm('Yakin mau hapus SEMUA pengaturan? Tidak bisa dikembalikan!')) {
+        localStorage.removeItem('pengaturanVoxz');
+        location.reload();
+    }
+});
+
+// === SIMPAN & MUAT OTOMATIS ===
+function simpanPengaturan() {
+    const data = {
+        modeGelap: document.getElementById('modeGelap').classList.contains('aktif'),
+        efekAnimasi: document.getElementById('efekAnimasi').classList.contains('aktif'),
+        formatOtomatis: document.getElementById('formatOtomatis').classList.contains('aktif'),
+        simpanRiwayat: document.getElementById('simpanRiwayat').classList.contains('aktif'),
+        notifUpdate: document.getElementById('notifUpdate').classList.contains('aktif'),
+        unduhCepat: document.getElementById('unduhCepat').classList.contains('aktif'),
+        cekAman: document.getElementById('cekAman').classList.contains('aktif'),
+        kirimData: document.getElementById('kirimData').classList.contains('aktif'),
+        warnaUtama: document.getElementById('warnaUtama').value,
+        ukuranTeks: document.getElementById('ukuranTeks').value
+    };
+    localStorage.setItem('pengaturanVoxz', JSON.stringify(data));
+}
+
+function muatPengaturan() {
+    const data = localStorage.getItem('pengaturanVoxz');
+    if(!data) return;
+    
+    const set = JSON.parse(data);
+    setSaklar('modeGelap', set.modeGelap);
+    setSaklar('efekAnimasi', set.efekAnimasi);
+    setSaklar('formatOtomatis', set.formatOtomatis);
+    setSaklar('simpanRiwayat', set.simpanRiwayat);
+    setSaklar('notifUpdate', set.notifUpdate);
+    setSaklar('unduhCepat', set.unduhCepat);
+    setSaklar('cekAman', set.cekAman);
+    setSaklar('kirimData', set.kirimData);
+    
+    if(set.warnaUtama) {
+        document.documentElement.style.setProperty('--utama', set.warnaUtama);
+        document.getElementById('warnaUtama').value = set.warnaUtama;
+    }
+    if(set.ukuranTeks) {
+        document.getElementById('ukuranTeks').value = set.ukuranTeks;
+        const label = ['Kecil', 'Normal', 'Besar'];
+        nilaiUkuran.textContent = label[set.ukuranTeks - 1];
+        const skala = [13,15,17][set.ukuranTeks - 1];
+        document.documentElement.style.fontSize = skala + 'px';
+    }
+}
+
+function setSaklar(id, aktif) {
+    const el = document.getElementById(id);
+    aktif ? el.classList.add('aktif') : el.classList.remove('aktif');
+}
+
+// Jalankan pertama kali
+muatPengaturan();
+</script>
+<script>
+// Terapkan pengaturan tema yang sama di semua halaman
+function ambilPengaturan() {
+    const simpanan = localStorage.getItem('pengaturanVoxz');
+    if(simpanan) {
+        const set = JSON.parse(simpanan);
+        // Ganti warna utama otomatis
+        if(set.warnaUtama) {
+            document.documentElement.style.setProperty('--utama', set.warnaUtama);
+        }
+    }
+}
+
+// Jalankan otomatis saat halaman dibuka
+ambilPengaturan();
+// Cek wajib login
+function cekWajibLogin() {
+    const akun = JSON.parse(localStorage.getItem('akunVoxz') || 'null');
+    if(!akun || akun.status !== "login") {
+        alert("⚠️ Silakan masuk akun dulu ya!");
+        window.location.href = "login.html";
+    }
+}
+// Jalankan otomatis saat buka halaman
+cekWajibLogin();
+
+// Tambah tombol Keluar Akun di navigasi atau pengaturan
+function keluarAkun() {
+    localStorage.removeItem('akunVoxz');
+    alert("✅ Berhasil keluar akun!");
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
