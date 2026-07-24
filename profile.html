@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya - VOXZ</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* === GAYA KHUSUS HALAMAN PROFIL === */
+        .bungkus-profil {
+            max-width: 480px;
+            margin: 2rem auto 6rem;
+            padding: 0 1.2rem;
+        }
+
+        /* KARTU UTAMA */
+        .kartu-utama {
+            background: rgba(26, 29, 43, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 2.5rem 1.8rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .kartu-utama:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        /* ✅ PERBAIKAN LOGO/PROFIL: Ukuran & Posisi Pas */
+        .bungkus-foto {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 1.2rem;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(45deg, #25D366, #128C7E, #075E54, #25D366);
+            background-size: 300% 300%;
+            animation: rgb-gerak-cepat 4s ease infinite;
+            box-shadow: 0 0 30px rgba(37, 211, 102, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .foto-profil {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #121212;
+            display: block;
+        }
+        @keyframes rgb-gerak-cepat {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .nama-pengguna {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .info-bawah {
+            font-size: 0.9rem;
+            color: var(--teks-abu);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+        .status-online {
+            width: 10px;
+            height: 10px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10b981;
+        }
+
+        /* TOMBOL */
+        .tombol-modern {
+            width: 100%;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .tombol-keluar {
+            background: rgba(239, 68, 68, 0.12);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        .tombol-keluar:hover {
+            background: rgba(239, 68, 68, 0.2);
+            transform: translateY(-2px);
+        }
+        .tombol-masuk {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+        }
+        .tombol-masuk:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+        }
+        .ikon-tombol {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* KARTU RIWAYAT */
+        .kartu-riwayat {
+            background: rgba(26, 29, 43, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .judul-bagian {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2dd4bf;
+        }
+        .jumlah-unduhan {
+            margin-left: auto;
+            padding: 0.2rem 0.6rem;
+            background: rgba(45, 212, 191, 0.15);
+            color: #2dd4bf;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* ITEM UNDUHAN */
+        .daftar-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .item-unduhan {
+            background: rgba(37, 40, 54, 0.6);
+            border-radius: 14px;
+            padding: 1rem;
+            transition: all 0.2s ease;
+            border-left: 3px solid #2dd4bf;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .item-unduhan:hover {
+            background: rgba(37, 40, 54, 0.9);
+            transform: translateX(4px);
+        }
+        .nama-file {
+            font-weight: 500;
+            color: var(--teks-putih);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .detail-file {
+            font-size: 0.8rem;
+            color: var(--teks-abu);
+            display: flex;
+            gap: 1rem;
+            padding-left: 1.7rem;
+        }
+        .ikon-kecil {
+            width: 14px;
+            height: 14px;
+            opacity: 0.7;
+        }
+
+        /* KOSONG */
+        .kosong {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: var(--teks-abu);
+        }
+        .ikon-besar {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            opacity: 0.3;
+        }
+        .kosong a {
+            color: #a5b4fc;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- SIDEBAR & NAVIGASI -->
+<button class="menu-toggle" id="menuToggle">☰</button>
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h2>VOXZ MARKETPLACE</h2>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="index.html">• Beranda</a>
+        <a href="#koleksi">• Koleksi</a>
+        <a href="tentang.html">• Info</a>
+        <a href="kontak.html">• Kontak</a>
+        <a href="contri.html">• Upload</a>
+        <a href="top.html">• Official Channel</a>
+        <a href="profil.html" class="aktif">• Profil Saya</a>
+    </nav>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<div class="bungkus-profil">
+    <div id="wadahKonten"></div>
+</div>
+
+<!-- NAVIGASI BAWAH -->
+<nav class="nav-bawah">
+    <a href="index.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9,22 9,12 15,12 15,22"/>
+        </svg>
+        <span>Beranda</span>
+    </a>
+    <a href="download.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7,10 12,15 17,10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Unduhan</span>
+    </a>
+    <a href="profil.html" class="nav-item aktif">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span>Profil</span>
+    </a>
+    <a href="pengaturan.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06-.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.15 1.15 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        <span>Pengaturan</span>
+    </a>
+</nav>
+
+<script src="script.js"></script>
+<script>
+const akun = JSON.parse(localStorage.getItem('akunVoxz') || 'null');
+const wadah = document.getElementById('wadahKonten');
+
+if(!akun || akun.status !== "login") {
+    wadah.innerHTML = `
+        <div class="kartu-utama">
+            <svg class="ikon-besar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <h3 style="margin-bottom: 0.5rem;">Akses Terbatas</h3>
+            <p style="color: var(--teks-abu); margin-bottom: 1.5rem;">Masuk akun dulu untuk melihat profil & riwayat unduhanmu</p>
+            <button class="tombol-modern tombol-masuk" onclick="window.location.href='login.html'">
+                <svg class="ikon-tombol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                    <polyline points="10 17 15 12 10 7"/>
+                    <line x1="15" y1="12" x2="3" y2="12"/>
+                </svg>
+                Masuk Sekarang
+            </button>
+        </div>
+    `;
+} else {
+    const daftarUnduhan = JSON.parse(localStorage.getItem('daftarUnduhan') || '[]');
+    // Perbaiki tampilan waktu agar tidak undefined
+    const waktuMasuk = akun.waktu ? akun.waktu : new Date().toLocaleString('id-ID');
+
+    wadah.innerHTML = `
+        <div class="kartu-utama">
+            <div class="bungkus-foto">
+                <img src="https://files.catbox.moe/kg207t.png" alt="Logo Voxza" class="foto-profil" loading="lazy">
+            </div>
+            <h2 class="nama-pengguna">${akun.nama}</h2>
+            <div class="info-bawah">
+                <span class="status-online"></span>
+                <span>Sedang Aktif • Masuk sejak ${waktuMasuk}</span>
+            </div>
+            <button class="tombol-modern tombol-keluar" onclick="konfirmasiKeluar()">
+                <svg class="ikon-tombol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                Keluar dari Akun
+            </button>
+        </div>
+
+        <div class="kartu-riwayat">
+            <h3 class="judul-bagian">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Riwayat Unduhan
+                <span class="jumlah-unduhan">${daftarUnduhan.length}</span>
+            </h3>
+            ${daftarUnduhan.length === 0 ? `
+                <div class="kosong">
+                    <svg class="ikon-besar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <p>Belum ada addon yang diunduh</p>
+                    <a href="index.html">Jelajahi Koleksi</a>
+                </div>
+            ` : `
+                <div class="daftar-item">
+                    ${daftarUnduhan.map(item => `
+                        <div class="item-unduhan">
+                            <div class="nama-file">
+                                <svg class="ikon-kecil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                                    <polyline points="13 2 13 9 20 9"/>
+                                </svg>
+                                ${item.nama}
+                            </div>
+                            <div class="detail-file">
+                                <span>${item.ukuran}</span>
+                                <span>${item.waktu}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `}
+        </div>
+    `;
+}
+
+function konfirmasiKeluar() {
+    if(confirm("Yakin mau keluar dari akun ini?")) {
+        localStorage.removeItem('akunVoxz');
+        window.location.href = "login.html";
+    }
+}
+</script>
+</body>
+</html>

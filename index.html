@@ -8,32 +8,33 @@
 </head>
 <body>
 
-<!-- ✅ MUNCUL PERTAMA SEBELUM HALAMAN UTAMA -->
+<!-- ✅ POPUP IKUTI DENGAN PROFIL RGB -->
 <div class="latar-pengikut" id="popupIkuti">
     <div class="kotak-pengikut">
-        <!-- Tanda Silang Tutup -->
         <span class="tombol-tutup" onclick="tutupPopup()">×</span>
 
-      <img src="https://files.catbox.moe/kg207t.png" alt="Profil" class="foto-profil">
+        <!-- Bungkus foto profil untuk garis RGB -->
+        <div class="bungkus-profil">
+            <img src="https://files.catbox.moe/kg207t.png" alt="Profil" class="foto-profil">
+        </div>
 
         <h3>Follow Chanel Kami!</h3>
         <p>Dapatkan info update terbaru, dan rilis eksklusif langsung di WhatsApp!</p>
 
-        <!-- GANTI LINK DENGAN SALURAN KAMU -->
         <a href="https://whatsapp.com/channel/0029Vb8ov9dGufIpSOFk3f3w" target="_blank" class="btn-ikut-wa">
             Follow Sekarang
         </a>
     </div>
 </div>
 
-<!-- SISA ISI HALAMAN KAMU -->
+<!-- SIDEBAR -->
 <button class="menu-toggle" id="menuToggle">☰</button>
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
         <h2>VOXZ MARKET PLACE</h2>
     </div>
     <nav class="sidebar-nav">
-        <a href="#beranda">• Beranda</a>
+        <a href="index.html">• Beranda</a>
         <a href="#koleksi">• Koleksi</a>
         <a href="tentang.html">• Info</a>
         <a href="kontak.html">• Kontak</a>
@@ -43,6 +44,7 @@
 </div>
 <div class="overlay" id="overlay"></div>
 
+<!-- ISI UTAMA -->
 <div class="container">
     <header class="banner" id="beranda">
         <h1>Koleksi Addon Market Place</h1>
@@ -66,17 +68,104 @@
     </section>
 </div>
 
+<!-- NAVIGASI BAWAH SUDAH DIPERBAIKI LINK -->
+<nav class="nav-bawah">
+    <a href="index.html" class="nav-item aktif">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9,22 9,12 15,12 15,22"/>
+        </svg>
+        <span>Halaman Awal</span>
+    </a>
+
+    <a href="download.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7,10 12,15 17,10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Unduhan</span>
+    </a>
+
+    <a href="pengaturan.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06-.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.15 1.15 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        <span>Pengaturan</span>
+    </a>
+</nav>
+
 <script src="data_addons.js"></script>
 <script src="script.js"></script>
+
 <script>
+// === POPUP ===
 function tutupPopup() {
     document.getElementById('popupIkuti').style.display = 'none';
 }
 document.getElementById('popupIkuti').addEventListener('click', e => {
     if (e.target === e.currentTarget) tutupPopup();
 });
+
+// === TERAPKAN PENGATURAN WARNA GLOBAL ===
+function ambilPengaturan() {
+    const simpanan = localStorage.getItem('pengaturanVoxz');
+    if(simpanan) {
+        const set = JSON.parse(simpanan);
+        if(set.warnaUtama) {
+            document.documentElement.style.setProperty('--utama', set.warnaUtama);
+        }
+    }
+}
+ambilPengaturan();
+
+// === CEK LOGIN: BERANDA BEBAS, LAINNYA WAJIB ===
+function cekWajibLogin() {
+    const halamanDilindungi = ['unduhan.html', 'pengaturan.html', 'contri.html', 'top.html', 'tentang.html', 'kontak.html'];
+    const halamanSaatIni = window.location.pathname.split('/').pop() || 'index.html';
+    const akun = JSON.parse(localStorage.getItem('akunVoxz') || 'null');
+
+    if(halamanDilindungi.includes(halamanSaatIni) && (!akun || akun.status !== "login")) {
+        alert("⚠️ Silakan masuk akun dulu untuk akses fitur ini!");
+        window.location.href = "login.html";
+    }
+}
+cekWajibLogin();
+
+// === TANDAI NAVIGASI SEDANG DIBUKA OTOMATIS ===
+const halamanSaatIni = window.location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('.nav-item').forEach(item => {
+    const link = item.getAttribute('href');
+    if(link === halamanSaatIni) {
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('aktif'));
+        item.classList.add('aktif');
+    }
+});
+
+// === FUNGSI KELUAR AKUN ===
+function keluarAkun() {
+    localStorage.removeItem('akunVoxz');
+    alert("✅ Berhasil keluar akun!");
+    window.location.href = "login.html";
+}
+// === FUNGSI UNDUH LANGSUNG BERFUNGSI ===
+function unduhSekarang(namaAddon, ukuran, linkMediafire) {
+    // Simpan ke daftar unduhan
+    let daftar = JSON.parse(localStorage.getItem('daftarUnduhan') || '[]');
+    daftar.unshift({
+        nama: namaAddon,
+        ukuran: ukuran,
+        link: linkMediafire,
+        waktu: new Date().toLocaleString('id-ID')
+    });
+    localStorage.setItem('daftarUnduhan', JSON.stringify(daftar));
+
+    // Langsung buka link MediaFire
+    window.open(linkMediafire, '_blank');
+    alert(`✅ ${namaAddon} siap diunduh!\nBuka halaman Unduhan untuk lihat riwayat.`);
+}
 </script>
+
 </body>
 </html>
-
-
